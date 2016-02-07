@@ -6,7 +6,7 @@ Running
 - run the docker container with:
 
 ```
-docker run --rm -it waja/httpdiff-cli --help 
+docker run --rm -it waja/httpdiff --help 
 ```
 
 Building

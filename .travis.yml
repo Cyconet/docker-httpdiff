@@ -9,4 +9,4 @@ install:
   - docker build -t waja/httpdiff .
 
 script:
-  - test [ "$(docker run --rm -it waja/httpdiff-cli -help | head -1 | cut -d' ' -f1)" = "httpdiff" ]
+  - test [ "$(docker run --rm -it waja/httpdiff -help | head -1 | cut -d' ' -f1)" = "httpdiff" ]

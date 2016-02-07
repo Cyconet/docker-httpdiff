@@ -1,4 +1,4 @@
-IMAGE_NAME := waja/httpdiff-cli
+IMAGE_NAME := waja/httpdiff
 
 build:
 	docker build --rm -t $(IMAGE_NAME) .
