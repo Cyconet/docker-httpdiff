@@ -1,4 +1,4 @@
-Builds an docker image with the [httpdiff](https://github.com/jgrahamc/httpdiff)  ready to run.
+Builds a docker image with the [httpdiff](https://github.com/jgrahamc/httpdiff) ready to run.
 
 Running
 -------
