@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.3
+FROM alpine:3.3
 
 # Dockerfile Maintainer
 MAINTAINER Jan Wagner "waja@cyconet.org"
@@ -9,8 +9,8 @@ ENV GOBIN /gopath/bin
 ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
 
 # Install dependencies for building httpdiff 
-RUN apk --update add ca-certificates && \
- apk --update add --virtual build-dependencies curl git go && \
+RUN apk --no-cache add ca-certificates && \
+ apk --no-cache add --virtual build-dependencies curl git go && \
  # Install httpdiff client
  echo "Starting installing httpdiff." && \
  go get github.com/jgrahamc/httpdiff && \
