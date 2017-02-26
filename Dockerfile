@@ -10,7 +10,7 @@ ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
 
 # Install dependencies for building httpdiff 
 RUN apk --no-cache add ca-certificates && \
- apk --no-cache add --virtual build-dependencies curl git go && \
+ apk --no-cache add --virtual build-dependencies curl git go musl-dev && \
  # Install httpdiff client
  echo "Starting installing httpdiff." && \
  go get github.com/jgrahamc/httpdiff && \
