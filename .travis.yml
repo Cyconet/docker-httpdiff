@@ -6,7 +6,7 @@ services:
   - docker
 
 install:
-  - docker build -t waja/httpdiff .
+  - make build
 
 script:
-  - test $(docker run --rm -it waja/httpdiff -help | head -1 | cut -d' ' -f1) = "httpdiff"
+  - make test
