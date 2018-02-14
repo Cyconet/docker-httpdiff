@@ -1,5 +1,7 @@
 # Docker-httpdiff
 
+[![](https://images.microbadger.com/badges/version/waja/httpdiff.svg)](https://hub.docker.com/r/waja/httpdiff/)
+[![](https://images.microbadger.com/badges/image/waja/httpdiff.svg)](https://hub.docker.com/r/waja/httpdiff/)
 [![Build Status](https://travis-ci.org/Cyconet/docker-httpdiff.svg?branch=development)](https://travis-ci.org/Cyconet/docker-httpdiff)
 [![Docker Build Status](https://img.shields.io/docker/build/waja/httpdiff.svg)](https://hub.docker.com/r/waja/httpdiff/)
 [![GitHub tag](https://img.shields.io/github/tag/Cyconet/docker-httpdiff.svg)](https://github.com/Cyconet/docker-httpdiff/tags)
