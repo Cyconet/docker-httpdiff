@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM golang:alpine as builder
 
 # Dockerfile Maintainer
 MAINTAINER Jan Wagner "waja@cyconet.org"
@@ -23,21 +23,25 @@ LABEL org.label-schema.name="httpdiff - diff http requests" \
 ENV HTTPDIFF_VERSION master
 ENV UPSTREAM github.com/jgrahamc/httpdiff
 
-ENV GOROOT /usr/lib/go
 ENV GOPATH /gopath
-ENV GOBIN /gopath/bin
-ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+ENV GOBIN /go/bin
 
 RUN apk --no-cache update && apk --no-cache upgrade && \
  # Install dependencies for building httpdiff 
- apk --no-cache add ca-certificates && \
- apk --no-cache add --virtual build-dependencies curl git go musl-dev && \
- # Install httpdiff client
- echo "Starting installing httpdiff." && \
+ apk --no-cache add ca-certificates git && \
+ # Build httpdiff client
+ echo "Fetching httpdiff source" && \
  go get -d $UPSTREAM && \
  cd $GOPATH/src/$UPSTREAM/ && git checkout $HTTPDIFF_VERSION && \
- go install $UPSTREAM && \
- apk del build-dependencies
+ echo "Getting dependancies" && \
+ go get -d -v && \
+ echo "Building httpdiff" && \
+ CGO_ENABLED=0 go install -v -ldflags '-extldflags "-static"' $UPSTREAM
 
-ENTRYPOINT ["/gopath/bin/httpdiff"]
+# start from scratch
+FROM scratch
+# Copy our static executable
+COPY --from=builder /go/bin/httpdiff /go/bin/httpdiff
+
+ENTRYPOINT ["/go/bin/httpdiff"]
 #CMD [""]
