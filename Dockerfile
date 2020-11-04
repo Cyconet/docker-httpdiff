@@ -29,7 +29,7 @@ RUN apk --no-cache update && apk --no-cache upgrade && \
  apk --no-cache add ca-certificates git && \
  # Build httpdiff client
  echo "Fetching httpdiff source" && \
- go get -d $UPSTREAM && \
+ go get -d $UPSTREAM 
 WORKDIR $GOPATH/src/$UPSTREAM/
 RUN git checkout $HTTPDIFF_VERSION && \
  echo "Getting dependancies" && \
