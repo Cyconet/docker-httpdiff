@@ -23,13 +23,15 @@ ENV UPSTREAM github.com/jgrahamc/httpdiff
 ENV GOPATH /gopath
 ENV GOBIN /go/bin
 
+# hadolint ignore=DL3017,DL3018
 RUN apk --no-cache update && apk --no-cache upgrade && \
  # Install dependencies for building httpdiff 
  apk --no-cache add ca-certificates git && \
  # Build httpdiff client
  echo "Fetching httpdiff source" && \
  go get -d $UPSTREAM && \
- cd $GOPATH/src/$UPSTREAM/ && git checkout $HTTPDIFF_VERSION && \
+WORKDIR $GOPATH/src/$UPSTREAM/
+RUN git checkout $HTTPDIFF_VERSION && \
  echo "Getting dependancies" && \
  go get -d -v && \
  echo "Building httpdiff" && \
