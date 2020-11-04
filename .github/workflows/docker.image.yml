@@ -33,5 +33,7 @@ jobs:
     - name: Test the Docker image
       run: |
         CONTAINER_OUTPUT="$(docker run --rm -t ${IMAGE_NAME} -help)"
+        echo "${CONTAINER_OUTPUT}"
         TEST_STRING="$(echo ${CONTAINER_OUTPUT} | head -1 | cut -d' ' -f1)"
+        echo "${TEST_STRING}"
         if ! [ "${TEST_STRING}" = "httpdiff" ]; then exit 1; fi
